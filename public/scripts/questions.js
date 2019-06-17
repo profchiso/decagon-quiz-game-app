@@ -2,10 +2,12 @@ let counter = 0;
 let total = 0;
 let correct = [];
 let wrong = [];
-
+var xhr = new XMLHttpRequest();
 $(document).ready(function(){
-    var xhr = new XMLHttpRequest();
 
+    
+   
+   
     xhr.open('GET', 'http://localhost:3000/questions', true);
     xhr.onload = function() {
         if(this.status == 200){
@@ -75,6 +77,11 @@ $(document).ready(function(){
         xhr.send();
 
     });
+   
+
+
+
+
 
 });
 

@@ -44,8 +44,9 @@
          width: 36px;
          height: 36px;
          transition: 0.3s;
-       
-       
+       }
+       #socail-media-icons a:hover{
+         color: aliceblue;
        }
        .first-section{
          margin-top: 90px;
@@ -58,4 +59,19 @@
        }
   .navbar-toggler{
     color: beige;
+  }
+  .btn{
+    margin-bottom: 15px;
+    margin-left: 15px;
+  }
+  footer p{
+    margin-top: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+   
+  }
+  #welcome-text{
+    font-family: monospace;
+    font-size: 20px;
+    font-weight: bolder;
+    color: #ab02a6
   }

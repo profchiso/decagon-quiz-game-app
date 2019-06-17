@@ -1,8 +1,9 @@
 $(document).ready(function(){
     var today= new Date;
     var xhr = new XMLHttpRequest();
+    $('#msg-div').hide();
     $("#date-display").text(today.getFullYear());
-    pullQuestions();
+ 
     $('#reg-form-btn').click(function(){
        addUser(); 
     });
@@ -17,9 +18,20 @@ $(document).ready(function(){
         var email=$('#email').val();
         var userName=$('#player-name').val();
         var password=$('#password').val();
+        var emailRegExp = /\S+@\S+\.\S+/;
+        if(userName=="" ){
+            alert("Name  required") 
+        }else if(email==""){
+            alert('Email address required');
+        }else if(password==""){
+            alert('password required');
 
-        if(email!="" && userName!="" && password!="" ){
-            $.ajax({
+         }//else if(email!==emailRegExp){
+        //     alert('Email address entered not valid ');
+        // }
+        else{
+
+           $.ajax({
                 url: 'http://localhost:3000/users',
                 dataType: 'json',
                 type: 'POST',
@@ -34,44 +46,11 @@ $(document).ready(function(){
                     alert('Error Submitting your data');
                 }
             });
-        }else{
-            alert("All filleds are Required")
         }
     }
 //end of function to add user 
 //function to pull out questions from the database to the actions page
-   function pullQuestions(){
-    xhr.open('GET', 'http://localhost:3000/questions', true);
-    xhr.onload = function() {
-        if(this.status == 200){
-            var questions = JSON.parse(this.responseText);
-    
-            var output = '';
-            for (var i in questions){
-                output += 
-                `<tr>
-                <td>`+questions[i].id+`</td>
-                <td>`+questions[i].question+`</td>
-                <td>`+questions[i].optionA+`</td>
-                <td>`+questions[i].optionB+`</td>
-                <td>`+questions[i].optionC+`</td>
-                <td>`+questions[i].optionD+`</td>
-                <td>`+questions[i].answer+`</td>
-                <form>
-                <td><button type="button" class="btn btn-primary btn-xs" id="update-question-btn" name="update-question-btn">Update</button>
-                <button type="button" class="btn btn-danger btn-xs" id="delete-question-btn" name="delete-question-btn">Delete</button>
-                </td>
-                </form>
-                
-            </tr>
-            `
-            }
-            document.getElementById('populate').innerHTML = output;
-        }
-    }
-    xhr.send();
-} 
-// End of scrpit to pull out questions from the database to the actions page
+  
     
 //function to add question to database
     function addQuestion(){
@@ -108,19 +87,16 @@ $(document).ready(function(){
         }
     }
 //end of function to add question
-
- 
-
 //function login
  function login(){
+    var xhr = new XMLHttpRequest();
     var username=$('#login-email').val();
     var password=$('#login-password').val(); 
     if(username==""){
-        alert('Email Address require');
+        alert('Email required');
     }else if(password==""){
-
+        alert('password required');
     }else{
-
     xhr.open('GET', 'http://localhost:3000/users', true);
     xhr.onload = function() {
         if(this.status == 200){
@@ -129,12 +105,13 @@ $(document).ready(function(){
                 if(users[i].email==username && users[i].password==password){
                     window.location.assign("http://localhost:3000/pages/quiz.html");
                 
-             }//else{
-            //     $("#login-msg").text("incorrect username and password");
-            //     $("#login-msg").show().fadeOut(3000);
+             }else{
+                $('#msg-div').show();
+                $("#login-msg").text("Incorrect username and password combination");
+                $("#msg-div").show().fadeOut(4000);
 
-            // }
-        }  
+            }
+        }
         }
     }
     xhr.send();

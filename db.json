@@ -12,6 +12,12 @@
       "email": "okoriechinedusunday@gmail.com",
       "password": "chinedu",
       "id": 2
+    },
+    {
+      "player-name": "dec",
+      "email": "dec@gmail.com",
+      "password": "dec",
+      "id": 3
     }
   ],
   "questions": [
