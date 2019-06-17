@@ -2,6 +2,11 @@ $(document).ready(function(){
     var today= new Date;
     var xhr = new XMLHttpRequest();
     $('#msg-div').hide();
+    $('#success-msg').hide();
+    $('#error-msg').hide();
+    $('#view-a-section').hide();
+
+
     $("#date-display").text(today.getFullYear());
  
     $('#reg-form-btn').click(function(){
@@ -13,6 +18,10 @@ $(document).ready(function(){
     $("#login-btn").click(function(){
         login();
     });
+    $("#view-a-question-btn").click(function(){
+        viewAQuestion();
+    });
+
 //function to add user to database
     function addUser(){
         var email=$('#email').val();
@@ -49,9 +58,7 @@ $(document).ready(function(){
         }
     }
 //end of function to add user 
-//function to pull out questions from the database to the actions page
-  
-    
+
 //function to add question to database
     function addQuestion(){
         var question=$('#question').val();
@@ -74,6 +81,12 @@ $(document).ready(function(){
                         var sms=" Question is successfully added";
                          alert(sms );
                         window.location.assign("http://localhost:3000/pages/actions.html");
+                        
+                        
+                        $('#success-msg').text("Question is successfully added");
+                        $('#success-msg').show().fadeOut(400);
+                       
+
                              },
                    error: function(){
                          alert('Error Submitting your question');
@@ -87,6 +100,7 @@ $(document).ready(function(){
         }
     }
 //end of function to add question
+
 //function login
  function login(){
     var xhr = new XMLHttpRequest();
@@ -117,5 +131,67 @@ $(document).ready(function(){
     xhr.send();
 }
 }
-//end of function login
 })
+//end of function login
+
+//function to view a questions from db
+function viewAQuestion(){
+    $("#error-msg").hide();
+    var qid=$('#question-id').val();
+    xhr.open('GET', 'http://localhost:3000/questions', true);
+    xhr.onload = function() {
+        if(this.status == 200){
+            var questions = JSON.parse(this.responseText);
+            var output = '';
+            var qid=$('#question-id').val();
+            for (var i in questions){
+                if(questions[i].id==qid){
+                    $('#view-questions-section').hide();
+                    $('#view-a-section').show();
+                   
+                output += 
+                `<tr>
+                <td>`+questions[i].id+`</td>
+                <td>`+questions[i].question+`</td>
+                <td>`+questions[i].optionA+`</td>
+                <td>`+questions[i].optionB+`</td>
+                <td>`+questions[i].optionC+`</td>
+                <td>`+questions[i].optionD+`</td>
+                <td>`+questions[i].answer+`</td>
+                <form method="GET">
+                <td><button type="button" class="btn btn-primary btn-xs" id="`+questions[i].id+`" name="update-question-btn">Update</button>
+                <button type="button" class="btn btn-danger btn-xs" id="`+questions[i].id+`" name="delete-question-btn">Delete</button>
+                </td>
+                </form>
+            </tr>
+            `
+            }
+        }
+        
+            document.getElementById('populateA').innerHTML = output;
+        }
+    }
+    xhr.send();
+}
+ // end of function to view a questions from db
+
+//function to delete question from the database
+ function deleteQuestion(e){
+    $.ajax({
+        url:"http://localhost:3000/questions/"+e,
+        dataType:"json",
+        type:'DELETE',     
+        success:function(){
+          alert(`question ${e} deleted`);
+         window.location.assign('http://localhost:3000/pages/actions.html');
+      }
+    }); 
+ }
+ // End function to delete question from the database
+
+ //function update question
+function updateQuestion(e){
+    alert(e);
+
+}
+ //end of function update question

@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
     pullQuestions();
+    //function to pull out questions from the database to the actions page
     function pullQuestions(){
         xhr.open('GET', 'http://localhost:3000/questions', true);
         xhr.onload = function() {
@@ -18,12 +19,11 @@ $(document).ready(function(){
                     <td>`+questions[i].optionC+`</td>
                     <td>`+questions[i].optionD+`</td>
                     <td>`+questions[i].answer+`</td>
-                    <form>
-                    <td><button type="button" class="btn btn-primary btn-xs" id="update-question-btn" name="update-question-btn">Update</button>
-                    <button type="button" class="btn btn-danger btn-xs" id="delete-question-btn" name="delete-question-btn">Delete</button>
+                    <form method="POST">
+                    <td><button type="button" class="btn btn-primary btn-xs" id="update-question-btn" name="`+questions[i].id+`" onclick="updateQuestion(`+questions[i].id+`);">Update</button>
+                    <button type="button" class="btn btn-danger btn-xs" id="delete-question-btn" name="`+questions[i].id+`" onclick="deleteQuestion(`+questions[i].id+`);">Delete</button>
                     </td>
-                    </form>
-                    
+                    </form>   
                 </tr>
                 `
               

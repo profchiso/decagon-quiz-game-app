@@ -22,15 +22,6 @@
   ],
   "questions": [
     {
-      "question": "What is HTML?",
-      "optionA": "Hypertext mark-up Language",
-      "optionB": "Hypertext make-up Language",
-      "optionC": "Hypertext pre-processor",
-      "optionD": "None of the Above",
-      "answer": "A",
-      "id": 1
-    },
-    {
       "question": "what type of programming language is javascript?",
       "optionA": "CLIENT",
       "optionB": "SERVER",
