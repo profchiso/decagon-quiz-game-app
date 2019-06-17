@@ -1,15 +1,15 @@
 $(document).ready(function(){
     var today= new Date;
     var xhr = new XMLHttpRequest();
+    $("#date-display").text(today.getFullYear());
     $('#msg-div').hide();
     $('#success-msg').hide();
     $('#error-msg').hide();
     $('#view-a-section').hide();
     $('#section-update-question').hide();
-
-
-    $("#date-display").text(today.getFullYear());
+   
  
+
     $('#reg-form-btn').click(function(){
        addUser(); 
     });
@@ -21,6 +21,9 @@ $(document).ready(function(){
     });
     $("#view-a-question-btn").click(function(){
         viewAQuestion();
+    });
+    $('#update-question-btn').click(function(){
+        updateQuestion();
     });
 
 //function to add user to database
@@ -191,7 +194,7 @@ function viewAQuestion(){
  }
  // End function to delete question from the database
 
- //function update question
+ //function fetch question for update
 function fetchQuestion(e){
     var Uquestion=$('#Uquestion');
     var optionA=$('#UA');
@@ -212,7 +215,7 @@ function fetchQuestion(e){
                 questionId.val(questions[i].id);
                 Uquestion.val(questions[i].question);
                optionA.val(questions[i].optionA);
-              optionA.val (questions[i].optionB);
+              optionB.val (questions[i].optionB);
                optionC.val(questions[i].optionC) ;
               optionD.val( questions[i].optionD) ;
                answer.val(questions[i].answer) ;
@@ -225,4 +228,47 @@ function fetchQuestion(e){
     $('#section-update-question').show().fadeIn(500);   
    
 }
- //end of function update question
+ //end of function fetch  question for update
+
+ function updateQuestion(){
+        var id=$('#questionId').val();
+        var question=$('#Uquestion').val();
+        var optionA=$('#UA').val();
+        var optionB=$('#UB').val();
+        var optionC=$('#UC').val();
+        var optionD=$('#UD').val();
+        var answer=$('#Uanswer').val().toUpperCase();
+
+        if(question != "" && optionA != "" && optionB != "" && optionC != "" && optionD !="" && answer !="" ){
+
+            if(answer=='A' || answer=='B'  || answer=='C' || answer=='D'){
+                $.ajax({
+                    url: 'http://localhost:3000/questions/'+id,
+                    dataType: 'json',
+                    type: 'PUT',
+                    contentType: 'application/json',
+                    data: JSON.stringify( { "question": question, "optionA": optionA, "optionB":optionB , "optionC":optionC , "optionD":optionD, "answer":answer } ),
+                    success: function(){
+                        var sms=" Question is successfully added";
+                         alert(sms );
+                        window.location.assign("http://localhost:3000/pages/actions.html");
+                        
+                        
+                        $('#success-msg').text(`Question ${id} successfully added`);
+                        $('#success-msg').show().fadeOut(400);
+                       
+
+                             },
+                   error: function(){
+                         alert('Error updating question');
+                        }
+                });
+            }else{
+                alert('Only letter A,B,C,D are allowed in the answer field');
+            }
+        }else{
+            alert("All filleds are Required")
+        }
+
+
+ }
