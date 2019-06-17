@@ -84,7 +84,7 @@
                           <th>OptionC</th>
                           <th>OptionD</th>
                           <th>Answer</th>
-                        <th>Actions</th>
+                        
                           
                           
                         </tr>
@@ -154,6 +154,53 @@
                     </form>
                 </div>
         </section>      
+
+        <section id="section-update-question">
+            <div class="container">
+            <div >
+                <h3 class="text-center"><b>Update Question</b></h3>
+
+            </div>
+                <form method="POST" id="update-add" autocomplete="on">
+
+                    <div id="question-div" class="form-group">
+                        <label for="Question">Question ID</label>
+                        <input required type="text" name="questionId" class="form-control" id="questionId" readonly >
+                </div>
+                        <div id="question-div" class="form-group">
+                                <label for="Question">Question</label>
+                                <input required type="text" name="Uquestion" class="form-control" id="Uquestion"  placeholder="Enter Question">
+                        </div>
+                        <div class="form-group">
+                                <label for="A">A</label>
+                                <input type="text" required name="UA" class="form-control" id="UA"  placeholder="Enter text description"> 
+                         </div>
+                         <div class="form-group">
+                                <label for="B">B</label>
+                                <input type="text" required name="UB" class="form-control" id="UB"  placeholder="Enter text description"> 
+                         </div>
+                         <div class="form-group">
+                                <label for="C">C</label>
+                                <input type="text" required name="UC" class="form-control" id="UC"  placeholder="Enter text description"> 
+                         </div>
+                         <div class="form-group">
+                                <label for="D">D</label>
+                                <input type="text" required name="UD" class="form-control" id="UD"  placeholder="Enter text description"> 
+                         </div>
+                       
+                        <div id="answer-div" class="form-group">
+                            <label for="player-name">Answer</label>
+                            <input class="form-control" required type="text"name="answer" id="Uanswer" maxlength="1" placeholder="Enter answer to Question (only Char A,B,C,D is allowed)"/>
+
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" name="update-question-btn" id="update-question-btn">Update</button>
+                            
+                      </div>
+                    </form>
+                </div>
+        </section>      
+
     </main>
     <!--main ends-->
 
@@ -177,48 +224,6 @@
 
     </footer>
     <!--footer ends-->
-
-    <!--modal form starts-->
-    <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-            <h4 class="modal-title" id="modalTitle">Users Login</h4>
-            <button type="button" id="close" role="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
-            
-          </div>
-          <form id="loginForm" method="post">
-          <div class="modal-body">
-            
-              <div class="error-report"></div>
-              <div class="form-group">
-                <label for="username" class="col-form-label">Username:</label>
-                <input type="email" name="username" class="form-control" id="username">
-                <p class="help-block"></p>
-              </div>
-              <div class="form-group">
-                <label for="password" class="col-form-label">Password</label>
-                <input type="password" name="password" id="password" class="form-control">
-                <p class="help-block"></p>
-              </div>
-              
-            
-          </div>
-          <div class="modal-footer">
-            <button type="button" role="button" class="btn btn-success" data-dismiss="modal" id="modalClose" name="modalClose">Close</button>
-            <button class="btn btn-success" type="button" role="button" name="login" id="login">Login<span class="fa fa-arrow-down"></span></button>
-      
-          </div>
-          </form>
-        </div>
-        </div>
-      </div>
-        <!-- end of modal form -->
-
-    
-
-
-
 
 <!--requried scripts-->
     <script src="../scripts/jquery.js"></script>

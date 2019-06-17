@@ -67,6 +67,7 @@
   footer p{
     margin-top: 10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 10px;
    
   }
   #welcome-text{
@@ -75,3 +76,4 @@
     font-weight: bolder;
     color: #ab02a6
   }
+  

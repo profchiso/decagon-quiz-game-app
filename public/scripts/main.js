@@ -5,6 +5,7 @@ $(document).ready(function(){
     $('#success-msg').hide();
     $('#error-msg').hide();
     $('#view-a-section').hide();
+    $('#section-update-question').hide();
 
 
     $("#date-display").text(today.getFullYear());
@@ -27,7 +28,7 @@ $(document).ready(function(){
         var email=$('#email').val();
         var userName=$('#player-name').val();
         var password=$('#password').val();
-        var emailRegExp = /\S+@\S+\.\S+/;
+        var emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if(userName=="" ){
             alert("Name  required") 
         }else if(email==""){
@@ -35,9 +36,10 @@ $(document).ready(function(){
         }else if(password==""){
             alert('password required');
 
-         }//else if(email!==emailRegExp){
-        //     alert('Email address entered not valid ');
-        // }
+         }else if(!email.match(emailRegExp)){
+             alert('Email address entered not valid ');
+             email.focus();
+        }
         else{
 
            $.ajax({
@@ -158,11 +160,6 @@ function viewAQuestion(){
                 <td>`+questions[i].optionC+`</td>
                 <td>`+questions[i].optionD+`</td>
                 <td>`+questions[i].answer+`</td>
-                <form method="GET">
-                <td><button type="button" class="btn btn-primary btn-xs" id="`+questions[i].id+`" name="update-question-btn">Update</button>
-                <button type="button" class="btn btn-danger btn-xs" id="`+questions[i].id+`" name="delete-question-btn">Delete</button>
-                </td>
-                </form>
             </tr>
             `
             }
@@ -177,6 +174,8 @@ function viewAQuestion(){
 
 //function to delete question from the database
  function deleteQuestion(e){
+     var beSure=window.confirm(`Do you really want to delete Question ${e}?`)
+     if(beSure){
     $.ajax({
         url:"http://localhost:3000/questions/"+e,
         dataType:"json",
@@ -186,12 +185,44 @@ function viewAQuestion(){
          window.location.assign('http://localhost:3000/pages/actions.html');
       }
     }); 
+}else{
+
+}
  }
  // End function to delete question from the database
 
  //function update question
-function updateQuestion(e){
-    alert(e);
+function fetchQuestion(e){
+    var Uquestion=$('#Uquestion');
+    var optionA=$('#UA');
+    var optionB=$('#UB');
+    var optionC=$('#UC');
+    var optionD=$('#UD');
+    var answer=$('#Uanswer');
+    var questionId=$('#questionId');
+    var qid=e
+    xhr.open('GET', 'http://localhost:3000/questions', true);
+    xhr.onload = function() {
+        if(this.status == 200){
+            var questions = JSON.parse(this.responseText);
+            for (var i in questions){
 
+             if(questions[i].id==qid){
+
+                questionId.val(questions[i].id);
+                Uquestion.val(questions[i].question);
+               optionA.val(questions[i].optionA);
+              optionA.val (questions[i].optionB);
+               optionC.val(questions[i].optionC) ;
+              optionD.val( questions[i].optionD) ;
+               answer.val(questions[i].answer) ;
+            }
+        }
+        }
+    }
+    xhr.send();
+    $('#section-add-update-question').hide();
+    $('#section-update-question').show().fadeIn(500);   
+   
 }
  //end of function update question

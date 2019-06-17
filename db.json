@@ -18,6 +18,24 @@
       "email": "dec@gmail.com",
       "password": "dec",
       "id": 3
+    },
+    {
+      "player-name": "oko",
+      "email": "ooo",
+      "password": "ddd",
+      "id": 4
+    },
+    {
+      "player-name": "ben",
+      "email": "b",
+      "password": "b",
+      "id": 5
+    },
+    {
+      "player-name": "dec",
+      "email": "ken@gmail.com",
+      "password": "dd",
+      "id": 6
     }
   ],
   "questions": [
@@ -29,6 +47,15 @@
       "optionD": "CLIENT AND SERVER",
       "answer": "A",
       "id": 2
+    },
+    {
+      "question": "what type of programming language is javascript?",
+      "optionA": "CLIENT",
+      "optionB": "SERVER",
+      "optionC": "NONE OF THE ABOVE",
+      "optionD": "CLIENT AND SERVER",
+      "answer": "A",
+      "id": 1
     }
   ]
 }

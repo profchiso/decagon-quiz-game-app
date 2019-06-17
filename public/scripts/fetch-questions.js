@@ -20,7 +20,7 @@ $(document).ready(function(){
                     <td>`+questions[i].optionD+`</td>
                     <td>`+questions[i].answer+`</td>
                     <form method="POST">
-                    <td><button type="button" class="btn btn-primary btn-xs" id="update-question-btn" name="`+questions[i].id+`" onclick="updateQuestion(`+questions[i].id+`);">Update</button>
+                    <td><button type="button" class="btn btn-primary btn-xs" id="update-question-btn" name="`+questions[i].id+`" onclick="fetchQuestion(`+questions[i].id+`);">Update</button>
                     <button type="button" class="btn btn-danger btn-xs" id="delete-question-btn" name="`+questions[i].id+`" onclick="deleteQuestion(`+questions[i].id+`);">Delete</button>
                     </td>
                     </form>   
