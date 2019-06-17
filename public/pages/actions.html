@@ -13,7 +13,7 @@
 <body>
  <div class="container-fluid">
      <header>
-        <nav class="navbar navbar-expand-md fixed-top  text-right">
+        <nav class="navbar navbar-expand-md fixed-top navbar-inverse text-right">
                 <a class="navbar-brand" href="../index.html"><img src="../img/logo.png" width="30px" height="30px" id="logo"> Decagon Quiz Game </a>
                 <button style="color: green" class="navbar-toggler btn btn-success" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" >
                   <span class="navbar-toggler-icon"></span>menu
@@ -81,9 +81,6 @@
                             <div class="form-group">
                                 <p id="success-msg" class="text-center alert alert-success">Action Successful</p>
                                 <p id="error-msg" class="text-center alert alert-danger">Action Unsuccessful</p>
-                            
-                                <button type="button" class="btn btn-primary" name="add-question" id="add-question">Add Question</button>
-                        
                                 <button type="button" class="btn btn-primary" id="view-a-question-btn" name="view-a-question-btn">View A Question</button>
                            </div>
                         </form>
@@ -93,10 +90,10 @@
         <section id="section-add-update-question">
             <div class="container">
             <div >
-                <h3 class="text-center"><b>Add Or Update Question</b></h3>
+                <h3 class="text-center"><b>Add Question</b></h3>
 
             </div>
-                <form method="POST" id="update-add">
+                <form method="POST" id="update-add" autocomplete="on">
                         <div id="question-div" class="form-group">
                                 <label for="Question">Question</label>
                                 <input required type="text" name="question" class="form-control" id="question"  placeholder="Enter Question">
@@ -120,7 +117,7 @@
                        
                         <div id="answer-div" class="form-group">
                             <label for="player-name">Answer</label>
-                            <input class="form-control" required type="text"name="answer" id="answer" maxlength="1"/>
+                            <input class="form-control" required type="text"name="answer" id="answer" maxlength="1" placeholder="Enter answer to Question (only Char A,B,C,D is allowed)"/>
 
                         </div>
                         <div class="form-group">
@@ -152,7 +149,50 @@
         </div>
 
     </footer>
-<!--footer ends-->
+    <!--footer ends-->
+
+    <!--modal form starts-->
+    <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title" id="modalTitle">Users Login</h4>
+            <button type="button" id="close" role="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+            
+          </div>
+          <form id="loginForm" method="post">
+          <div class="modal-body">
+            
+              <div class="error-report"></div>
+              <div class="form-group">
+                <label for="username" class="col-form-label">Username:</label>
+                <input type="email" name="username" class="form-control" id="username">
+                <p class="help-block"></p>
+              </div>
+              <div class="form-group">
+                <label for="password" class="col-form-label">Password</label>
+                <input type="password" name="password" id="password" class="form-control">
+                <p class="help-block"></p>
+              </div>
+              
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" role="button" class="btn btn-success" data-dismiss="modal" id="modalClose" name="modalClose">Close</button>
+            <button class="btn btn-success" type="button" role="button" name="login" id="login">Login<span class="fa fa-arrow-down"></span></button>
+      
+          </div>
+          </form>
+        </div>
+        </div>
+      </div>
+        <!-- end of modal form -->
+
+    
+
+
+
+
 <!--requried scripts-->
     <script src="../scripts/jquery.js"></script>
     <script src="../scripts/jquery-migrate.min.js"></script>
