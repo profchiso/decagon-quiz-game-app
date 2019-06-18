@@ -36,17 +36,23 @@
       "email": "ken@gmail.com",
       "password": "dd",
       "id": 6
+    },
+    {
+      "player-name": "okorie chinedu sunday",
+      "email": "okoriechinedusunday@gmail.com",
+      "password": "chinedu",
+      "id": 7
     }
   ],
   "questions": [
     {
       "question": "what type of programming language is javascript?",
       "optionA": " SERVER",
-      "optionB": "SERVER",
+      "optionB": "CLIENT",
       "optionC": "NONE OF THE ABOVE",
       "optionD": "CLIENT AND SERVER",
       "answer": "B",
-      "id": 2
+      "id": 1
     },
     {
       "question": "what type of programming language is javascript?",
@@ -55,7 +61,7 @@
       "optionC": "NONE OF THE ABOVE",
       "optionD": "CLIENT AND SERVER",
       "answer": "A",
-      "id": 1
+      "id": 2
     }
   ]
 }

@@ -219,6 +219,7 @@ function fetchQuestion(e){
                optionC.val(questions[i].optionC) ;
               optionD.val( questions[i].optionD) ;
                answer.val(questions[i].answer) ;
+               Uquestion.focus();
             }
         }
         }
@@ -249,14 +250,12 @@ function fetchQuestion(e){
                     contentType: 'application/json',
                     data: JSON.stringify( { "question": question, "optionA": optionA, "optionB":optionB , "optionC":optionC , "optionD":optionD, "answer":answer } ),
                     success: function(){
-                        var sms=" Question is successfully added";
+                        var sms=` Question ${id} successfully updated`;
                          alert(sms );
                         window.location.assign("http://localhost:3000/pages/actions.html");
                         
                         
-                        $('#success-msg').text(`Question ${id} successfully added`);
-                        $('#success-msg').show().fadeOut(400);
-                       
+                        
 
                              },
                    error: function(){
