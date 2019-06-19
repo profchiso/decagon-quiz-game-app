@@ -14,7 +14,7 @@ The user can also contribute after login in by clicking on the contribute link.
   # Delete a question
   # update a question
 
-# For any challenge, contributions on how to improve the app,
+#For any challenge, contributions on how to improve the app,
   # contact the developer @
   
     # Email: okoriechinedusunday@gmail.com
